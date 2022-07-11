@@ -3,7 +3,6 @@ import pandas as pd
 from random import random, choice
 
 
-
 def process_client_org_xlsx(xls_file):
     table_xls = pd.ExcelFile(xls_file)
     sheet1 = pd.read_excel(table_xls, 'client')

@@ -64,7 +64,7 @@ class Bills(models.Model):
     client_name = models.ForeignKey(Clients, on_delete=models.CASCADE)
     client_org = models.ForeignKey(Organizations, on_delete=models.CASCADE)
 
-    number = models.IntegerField()
+    bill_number = models.IntegerField()
     sum = models.FloatField()
     date = models.DateField()
     service = models.CharField(max_length=128)
@@ -75,17 +75,17 @@ class Bills(models.Model):
     service_name = models.CharField(max_length=64)
 
     class Meta:
-        unique_together = (('client_org', 'number'),)
+        unique_together = (('client_org', 'bill_number'),)
 
     def __str__(self):
-        return f'{self.client_org}: #{self.number}'
+        return f'{self.client_org}: #{self.bill_number}'
 
 
 def add_bill(bills: list):
     for bill in bills:
         client = Clients.objects.get(name=bill[0])
         client_org = Organizations.objects.get(client_name=client.id, name=bill[1])
-        number = bill[2]
+        bill_number = bill[2]
         bill_sum = bill[3]
         date = bill[4]
         service = bill[5]
@@ -97,7 +97,7 @@ def add_bill(bills: list):
         Bills.objects.create(
             client_name=client,
             client_org=client_org,
-            number=number,
+            bill_number=bill_number,
             sum=bill_sum,
             date=date,
             service=service,
