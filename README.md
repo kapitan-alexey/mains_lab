@@ -1,4 +1,5 @@
 ### REST API service for mainslab
+please find service itself in *mains/* folder
 
 ## Run Project
 ```
