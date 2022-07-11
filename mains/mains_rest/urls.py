@@ -1,12 +1,8 @@
-from django.urls import path, include
+from django.urls import path
 
-from rest_framework.routers import DefaultRouter
-
-from .views import ImportClientsApiView
-
-# router = DefaultRouter()
-# router.register('xls-client', ImportClientsApiView, basename='excel client')
+from .views import ImportClientsApiView, ImportBillsApiView
 
 urlpatterns = [
-    path('clients', ImportClientsApiView.as_view())
+    path('clients', ImportClientsApiView.as_view()),
+    path('bills', ImportBillsApiView.as_view())
 ]
